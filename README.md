@@ -9,6 +9,7 @@ If this were to happen, there would be about 10-20 seconds of downtime while you
 ### The Components
 
 I've split up the components into separate .yaml files for clarity, but they can just as easily be combined into one file with `---` in between.
+
 | Component | Overview of what it does |
 | ------------- |-------------|
 | deployment.yaml | Handles the provisioning of database pods, and configuration of the postgres instance |
