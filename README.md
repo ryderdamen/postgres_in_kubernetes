@@ -29,3 +29,7 @@ This deployment will create an externally accessible database through a LoadBala
 Since this is a database, only one replica in the deployment (pod) can be running at any given time. More than one pod will have conflicts for who can mount the postgres data persistent volume claim. This means it is not possible to scale horizontally, as is the advantage for running most things on kubernetes.
 
 There are pros and cons to running postgreSQL instances on kubernetes - but I do it because I have a lot of little projects that use postgres that I want to keep separate, and keep it cheap. Kubernetes allows me to minimize the blast radius around a specific database instance, and not have to provision a new virtual machine for each one.
+
+
+## Database Backups
+Since only one container can mount the persistent disk at any given time, this makes running a separate container with the `pg_dump` command not a great option. To do this, the live database would have to be shut off while the backup is taking place. Currently, in GCP, [there is an option that allows you to create a schedule of snapshots on persistent disks](https://console.cloud.google.com/compute/snapshotSchedulePolicies/add). This is enough to backup the entire postgres database, as the /var/lib/postgres/data directory contains all necessary stateful info.
