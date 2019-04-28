@@ -12,10 +12,10 @@ I've split up the components into separate .yaml files for clarity, but they can
 
 | Component | Overview of what it does |
 | ------------- |-------------|
-| deployment.yaml | Handles the provisioning of database pods, and configuration of the postgres instance |
-| pvc.yaml | Secures the physical disk and claim for storing postgres data, so it persists with pod restarts. |
-| secret.yaml | Used for storing the base64 encoded database root password (currently `password`). |
-| service.yaml | Exposes the deployment (one pod) to the world (or the rest of the cluster depending on how configured). |
+| [deployment.yaml](kubernetes/deployment.yaml) | Handles the provisioning of database pods, and configuration of the postgres instance |
+| [pvc.yaml](kubernetes/pvc.yaml) | Provisions the physical disk and claim for storing postgres data, so it persists with pod restarts. |
+| [secret.yaml](kubernetes/secret.yaml) | Used for storing the base64 encoded database root password (currently `password`). |
+| [service.yaml](kubernetes/service.yaml) | Exposes the deployment (one pod) to the world (or the rest of the cluster depending on how configured). |
 
 ## Deployment
 To deploy to your kubernetes cluster, first configure kubectl with your desired credentials, adjust the variables in the `kuberenetes` folder, and then run:
