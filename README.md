@@ -1,6 +1,9 @@
 # PostgreSQL in Kubernetes
 This repository contains an example of a stateful postgreSQL instance running in kubernetes. This example is designed to work with Google Cloud Platform's GKE.
 
+## Note
+This is not a scalable or fault-tolerant deployment of postgreSQL. While this can operate in a production environment, it's recommended for projects that get little traffic or can handle periodic downtimes of around 30 seconds. For something more, stick to a regular deployment of postgres outside of your kubernetes cluster, and point internal k8 services to it. For everyone else who wants to run a bunch of little databases, keep reading.
+
 ## How It Works
 This repository runs a postgres database in kubernetes that can survive restarts of nodes (virtual machines) and pods (running conatiners). If the node containing the pod is shut down, the pod will terminate as well. When this happens, a new pod will be spun up somewhere else and mount the persistent volume claim - a piece of disk somewhere that we've tied to the `/var/lib/postgres/data` directory, so that the database will persist on restart.
 
